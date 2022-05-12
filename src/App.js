@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import AddCategory from "./components/AddCategory";
+import AddProduct from "./components/AddProduct";
+import NavBar from "./components/NavBar";
+import ProductList from "./components/ProductList";
+import CategoryProvider from "./context/CategoryProvider";
+import ProductProvider from "./context/ProductProvider";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ProductProvider>
+      <CategoryProvider>
+        <div className="bg-slate-800 min-h-screen w-screen font-poppins">
+          <NavBar />
+          <div className="container max-w-lg mx-auto">
+            <AddCategory />
+            <AddProduct />
+            <ProductList />
+          </div>
+        </div>
+      </CategoryProvider>
+    </ProductProvider>
   );
-}
+};
 
 export default App;
