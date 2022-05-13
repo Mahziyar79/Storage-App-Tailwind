@@ -5,7 +5,7 @@ const ShowOneProduct = ({ onDeleteHandler ,item}) => {
         <h2 className="font-bold text-slate-300">{item.title}</h2>
       </div>
       <div className="flex gap-x-3 items-center">
-        <span className="text-slate-300">2012/03/12</span>
+        <span className="text-slate-300">{item.date}</span>
         <span className="border border-slate-500 text-slate-500 py-1 px-2 rounded-full">
           {item.category}
         </span>

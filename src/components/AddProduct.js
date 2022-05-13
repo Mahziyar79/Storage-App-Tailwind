@@ -11,13 +11,18 @@ const AddProduct = () => {
     title: "",
     quantity: 1,
     category: "",
+    date: "",
   });
   const submitProductHandler = (e) => {
     e.preventDefault();
     if (newProduct.title && newProduct.category) {
       setProductItems([
         ...productItems,
-        { ...newProduct, id: Math.floor(Math.random() * (1000 - 1 + 1) + 1) },
+        {
+          ...newProduct,
+          id: Math.floor(Math.random() * (1000 - 1 + 1) + 1),
+          date: new Date().toLocaleDateString('fa-IR'),
+        },
       ]);
     } else {
       alert("please fill the title and category");
