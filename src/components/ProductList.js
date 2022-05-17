@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useProduct, useProductAction } from "../context/ProductProvider";
 import ShowOneProduct from "./ShowOneProduct";
 
@@ -6,26 +6,31 @@ const ProductList = () => {
   const productItems = useProduct();
   const setProductItems = useProductAction();
   const [searchValue, setSearchValue] = useState("");
-  const [sortValue, setSortValue] = useState("newest");
+ 
+  console.log(productItems);
+
+  const editProduct = (e) => {
+    e.preventDefault();
+  };
 
   const onDeleteHandler = (id) => {
     const filteredProducts = productItems.filter((item) => item.id !== id);
     setProductItems(filteredProducts);
   };
 
-  useEffect(() => {
-    if(sortValue==='newest'){
+  const onSortHandler = (e) => {
+    if (e.target.value === "newest") {
       const sortItemsNew = productItems.sort(function (a, b) {
         return new Date(a.date) - new Date(b.date);
       });
-      setProductItems(sortItemsNew)
-    }else{
+      setProductItems(sortItemsNew);
+    } else {
       const sortItemsOld = productItems.sort(function (a, b) {
         return new Date(b.date) - new Date(a.date);
       });
-      setProductItems(sortItemsOld)
+      setProductItems(sortItemsOld);
     }
-  }, [sortValue]);
+  };
 
   return (
     <>
@@ -45,7 +50,7 @@ const ProductList = () => {
           className="bg-transparent rounded-lg border border-slate-500 text-slate-400 w-56"
           id="sort"
           name="sort"
-          onChange={(e) => setSortValue(e.target.value)}
+          onChange={(e) => onSortHandler(e)}
         >
           <option className="bg-slate-600 text-slate-300" value="newest">
             Newest
@@ -73,10 +78,13 @@ const ProductList = () => {
               key={product.id}
               item={product}
               onDeleteHandler={(id) => onDeleteHandler(id)}
+              editProduct={(e) => editProduct(e)}
             />
           ))
       ) : (
-        <p className="text-red-300 text-lg font-bold pb-4">Please Add Product</p>
+        <p className="text-red-300 text-lg font-bold pb-4">
+          Please Add Product
+        </p>
       )}
     </>
   );
