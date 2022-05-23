@@ -12,7 +12,7 @@ const App = () => {
       <CategoryProvider>
         <div className="bg-slate-800 min-h-screen w-screen font-poppins">
           <NavBar />
-          <div className="container max-w-lg mx-auto">
+          <div className="container md:max-w-lg max-w-xs mx-auto">
             <AddCategory />
             <AddProduct />
             <ProductList />

@@ -7,11 +7,7 @@ const ProductList = () => {
   const setProductItems = useProductAction();
   const [searchValue, setSearchValue] = useState("");
  
-  console.log(productItems);
 
-  const editProduct = (e) => {
-    e.preventDefault();
-  };
 
   const onDeleteHandler = (id) => {
     const filteredProducts = productItems.filter((item) => item.id !== id);
@@ -78,7 +74,7 @@ const ProductList = () => {
               key={product.id}
               item={product}
               onDeleteHandler={(id) => onDeleteHandler(id)}
-              editProduct={(e) => editProduct(e)}
+              
             />
           ))
       ) : (
